@@ -13,7 +13,7 @@ export function GET() {
   return renderOgImage({
     hex: '0x00',
     label: 'research & development',
-    title: 'System software, taken apart and put back together.',
+    title: 'Where curiosity becomes engineering',
     footnote: 'C++ · Rust · kernel internals · malware analysis',
   })
 }

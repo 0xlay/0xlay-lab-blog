@@ -1,0 +1,28 @@
+---
+title: "Walking the Windows kernel: a field guide to KPCR"
+excerpt: "Every thread on Windows carries a pointer to the processor control region. Here's what lives there, how the scheduler uses it, and why it matters for rootkit detection."
+date: "2026-03-14"
+readTime: "14 min"
+hex: "0x0C"
+tags: [windows, internals]
+---
+
+Every thread running on Windows carries, two pointer dereferences away, a structure the kernel never advertises but cannot live without: the Kernel Processor Control Region. It is the anchor for per-processor state — the current thread, the IDT, the DPC queue — and if you learn to walk it, large parts of the scheduler stop being folklore and start being data.
+
+The KPCR lives at a fixed offset from the GS segment base in kernel mode (FS on x86). User-mode debuggers hide this from you; a kernel debugger does not. Attach WinDbg to a VM, break anywhere, and `dt nt!_KPCR @$pcr` prints the whole thing.
+
+The struct itself is undocumented but stable enough across builds to rely on:
+
+```c title="ntoskrnl/ke/kpcr.h"
+struct _KPCR {
+    _KPCR_TIB   NtTib;
+    _KPCR      *Self;
+    _KPRCB     *CurrentPrcb;
+    KIRQL       Irql;
+    ULONG       IRR;
+    ULONG       IrrActive;
+    ULONG       IDR;
+};
+```
+
+What follows is a field guide: which fields are stable across builds, which ones EDR vendors quietly rely on, and how malware abuses the difference.

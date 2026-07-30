@@ -1,0 +1,24 @@
+/* 0xlay.lab — code surfaces. Covers both CodeBlock and the figure/figcaption
+   structure rehype-pretty-code emits for a titled fence. */
+
+.oxl-code {
+  background: var(--surface-inset); border: 1px solid var(--border-default);
+  border-radius: var(--radius-md); overflow: hidden; font-family: var(--font-mono);
+  margin: 0;
+}
+.oxl-code-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 14px; border-bottom: 1px solid var(--border-default);
+}
+.oxl-code-title { font-size: var(--text-xs); font-weight: 500; color: var(--text-muted); }
+.oxl-code-lang {
+  font-size: var(--text-xs); font-weight: 600; color: var(--text-accent);
+  letter-spacing: var(--tracking-wide); text-transform: uppercase;
+}
+.oxl-code pre { margin: 0; padding: 14px 16px; font-size: var(--text-sm); line-height: 1.6; color: var(--text-body); overflow-x: auto; }
+.oxl-code .c { color: var(--text-faint); }
+.oxl-code .k { color: var(--blue-deep); font-weight: 600; }
+.oxl-code .s { color: var(--green-deep); }
+.oxl-code .h { color: var(--cyan-deep); }
+.oxl-code code span { color: var(--shiki-light); }
+[data-theme="dark"] .oxl-code code span { color: var(--shiki-dark); }

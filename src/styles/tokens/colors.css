@@ -1,0 +1,131 @@
+/* 0xlay.lab — color system.
+   Light is the default (:root); dark is scoped to [data-theme="dark"].
+   Accent = circuit gradient: signal green → trace cyan → link blue. */
+
+:root {
+  /* ── Brand accents (theme-stable) ───────────────────────── */
+  --green: #2bd96b;          /* signal green — primary accent */
+  --green-deep: #15803d;     /* accessible green for text on light — 4.66:1 on --bg-page */
+  --cyan: #29c4f2;           /* trace cyan — secondary accent */
+  --cyan-deep: #0e8ab8;      /* accessible cyan for text on light */
+  --blue: #2f9bff;           /* link blue */
+  --blue-deep: #1d6fd1;
+
+  --gradient-circuit: linear-gradient(120deg, var(--green) 0%, var(--cyan) 100%);
+  --gradient-circuit-3: linear-gradient(120deg, var(--green) 0%, var(--cyan) 55%, var(--blue) 100%);
+
+  /* ── Neutral scale (light) ──────────────────────────────── */
+  --gray-0: #ffffff;
+  --gray-1: #f6f8fa;
+  --gray-2: #eef1f5;
+  --gray-3: #e3e8ee;
+  --gray-4: #c9d2dc;
+  --gray-5: #9aa7b4;
+  --gray-6: #5c6b7a;
+  --gray-7: #39444f;
+  --gray-8: #232a31;
+  --gray-9: #161b20;
+
+  /* ── Semantic: surfaces ─────────────────────────────────── */
+  --bg-page: #f5f7f9;            /* app/page background */
+  --bg-deep: #eef1f5;            /* wells, code gutters, inset areas */
+  --surface-card: #ffffff;       /* cards, panels */
+  --surface-raised: #ffffff;     /* popovers, dialogs */
+  --surface-inset: #f0f3f6;      /* inputs, code blocks on cards */
+  --surface-inverse: #1c2127;    /* inverse chips/tooltips */
+
+  /* ── Semantic: text ─────────────────────────────────────── */
+  --text-strong: #11161b;        /* headings */
+  --text-body: #2a333c;          /* body copy */
+  --text-muted: #5c6b7a;         /* secondary, captions */
+  --text-faint: #8f9dab;         /* tertiary, placeholders */
+  --text-inverse: #f2f6fa;
+  --text-accent: var(--green-deep);
+  --text-link: var(--blue-deep);
+
+  /* ── Semantic: lines ────────────────────────────────────── */
+  --border-default: #e0e6ec;
+  --border-strong: #c9d2dc;
+  --border-accent: rgba(43, 217, 107, 0.45);
+
+  /* ── Semantic: interactive ──────────────────────────────── */
+  --accent-primary: var(--green);
+  --accent-primary-hover: #25c45f;
+  --accent-on-primary: #08140c;  /* text on green */
+  --focus-ring: rgba(41, 196, 242, 0.45);
+
+  /* ── Status ─────────────────────────────────────────────── */
+  --ok: #16a34a;
+  --ok-soft: rgba(43, 217, 107, 0.12);
+  --warn: #d97b06;
+  --warn-soft: rgba(217, 123, 6, 0.12);
+  --danger: #d93636;
+  --danger-soft: rgba(217, 54, 54, 0.10);
+  --info: #1d6fd1;
+  --info-soft: rgba(47, 155, 255, 0.12);
+
+  /* soft accent washes */
+  --green-soft: rgba(43, 217, 107, 0.12);
+  --cyan-soft: rgba(41, 196, 242, 0.12);
+  --blue-soft: rgba(47, 155, 255, 0.12);
+
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  /* accessible accent text flips to the bright endpoints */
+  --green-deep: #3fe57c;
+  --cyan-deep: #45cdf5;
+  --blue-deep: #58aeff;
+
+  /* ── Neutral scale (dark, desaturated slate — never pure black) */
+  --gray-0: #11161b;
+  --gray-1: #161b21;
+  --gray-2: #1c2127;
+  --gray-3: #232a31;
+  --gray-4: #2e3640;
+  --gray-5: #4a5663;
+  --gray-6: #8e9cab;
+  --gray-7: #b6c2cd;
+  --gray-8: #dde4ea;
+  --gray-9: #f2f6fa;
+
+  --bg-page: #14181d;
+  --bg-deep: #0f1317;
+  --surface-card: #1b2127;
+  --surface-raised: #222931;
+  --surface-inset: #14181d;
+  --surface-inverse: #f2f6fa;
+
+  --text-strong: #f2f6fa;
+  --text-body: #ccd6df;
+  --text-muted: #8e9cab;
+  --text-faint: #5f6d7b;
+  --text-inverse: #11161b;
+  --text-accent: var(--green-deep);
+  --text-link: var(--blue-deep);
+
+  --border-default: #2a323b;
+  --border-strong: #39434e;
+  --border-accent: rgba(43, 217, 107, 0.4);
+
+  --accent-primary: var(--green);
+  --accent-primary-hover: #43e07e;
+  --accent-on-primary: #08140c;
+  --focus-ring: rgba(41, 196, 242, 0.4);
+
+  --ok: #3fe57c;
+  --ok-soft: rgba(43, 217, 107, 0.14);
+  --warn: #f0a23c;
+  --warn-soft: rgba(240, 162, 60, 0.14);
+  --danger: #f06a6a;
+  --danger-soft: rgba(240, 106, 106, 0.12);
+  --info: #58aeff;
+  --info-soft: rgba(88, 174, 255, 0.14);
+
+  --green-soft: rgba(43, 217, 107, 0.14);
+  --cyan-soft: rgba(41, 196, 242, 0.14);
+  --blue-soft: rgba(88, 174, 255, 0.14);
+
+  color-scheme: dark;
+}

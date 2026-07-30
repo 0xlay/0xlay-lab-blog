@@ -1,0 +1,12 @@
+---
+title: "Rewriting my packet sniffer in Rust: what the borrow checker caught"
+excerpt: "Three use-after-frees and a TOCTOU I'd shipped in the C++ version for years. A migration post-mortem."
+date: "2026-02-27"
+readTime: "9 min"
+hex: "0x0B"
+tags: [rust, network]
+---
+
+The C++ version had shipped for two years. The tests passed. The fuzzer was quiet. Then I started the Rust port and the borrow checker found three use-after-frees on day one.
+
+This is the story of what the compiler knows that I didn't, and what it cost me to admit it.

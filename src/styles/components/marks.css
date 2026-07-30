@@ -1,0 +1,48 @@
+/* 0xlay.lab — the small brand marks: badges, section labels, the wordmark,
+   social glyphs. Everything here is mono except the badge text. */
+
+/* ── Badge ─────────────────────────────────────────────── */
+.oxl-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono); font-weight: 600; font-size: var(--text-xs);
+  padding: 3px 10px; border-radius: var(--radius-full); white-space: nowrap;
+}
+.oxl-badge-neutral { background: var(--gray-2); color: var(--text-muted); }
+.oxl-badge-accent  { background: var(--green-soft); color: var(--text-accent); }
+.oxl-badge-ok      { background: var(--ok-soft); color: var(--ok); }
+.oxl-badge-warn    { background: var(--warn-soft); color: var(--warn); }
+.oxl-badge-danger  { background: var(--danger-soft); color: var(--danger); }
+.oxl-badge-info    { background: var(--info-soft); color: var(--info); }
+
+/* A badge inside a link should not pick up the link colour. */
+a .oxl-badge { text-decoration: none; }
+
+/* ── Section label ─────────────────────────────────────── */
+.oxl-label {
+  font-family: var(--font-mono); font-weight: 600; font-size: 12px;
+  letter-spacing: var(--tracking-label); color: var(--text-accent);
+  display: flex; align-items: baseline; gap: 8px;
+}
+/* Uppercase belongs to the label alone, never to the hex marker beside it:
+   text-transform on the wrapper rendered 0x04 as 0X04 while the same marker
+   stayed lowercase on post cards. */
+.oxl-label-text { text-transform: uppercase; }
+
+/* ── Wordmark ──────────────────────────────────────────── */
+.oxl-wordmark {
+  font-family: var(--font-mono); font-weight: 700;
+  font-size: var(--wordmark-size, 20px);
+  color: var(--text-strong); letter-spacing: -0.01em; white-space: nowrap;
+}
+.oxl-wordmark-prefix {
+  background: var(--gradient-circuit);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* ── Social links ──────────────────────────────────────── */
+.oxl-social-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.oxl-social {
+  display: inline-flex; color: var(--text-muted);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+.oxl-social:hover { color: var(--text-accent); }

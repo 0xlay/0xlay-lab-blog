@@ -1,0 +1,46 @@
+/* 0xlay.lab — typography system.
+   Manrope = display/headings. Inter = UI + body. Google Sans Code = mono
+   (code, hex labels, metadata, nav). */
+
+:root {
+  --font-display: "Manrope", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "Google Sans Code", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* type scale (1.25 ratio, 16 base).
+
+     The small steps are fixed: body copy that shrinks with the viewport is
+     harder to read on the device that already has the least room. The display
+     steps scale, because 49px of Manrope ExtraBold does not fit a 375px screen
+     at any line length worth having. Each clamp keeps the desktop value as its
+     ceiling, so nothing below 1120px-wide changes. */
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-base: 15px;
+  --text-md: 17px;
+  --text-lg: 20px;
+  --text-xl: clamp(22px, 3.4vw, 25px);
+  --text-2xl: clamp(25px, 4.4vw, 31px);
+  --text-3xl: clamp(29px, 5.4vw, 39px);
+  --text-4xl: clamp(34px, 6.8vw, 49px);
+  --text-5xl: clamp(40px, 8vw, 61px);
+
+  /* weights */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-display: 800;   /* Manrope ExtraBold for hero headlines */
+
+  /* line heights */
+  --leading-tight: 1.1;
+  --leading-snug: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.7;
+
+  /* tracking */
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.04em;
+  --tracking-label: 0.08em;  /* mono overline labels, uppercase */
+}

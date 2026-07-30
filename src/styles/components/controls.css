@@ -1,0 +1,90 @@
+/* 0xlay.lab — buttons, inputs, switches, tabs, the theme toggle. */
+
+/* ── Button ────────────────────────────────────────────── */
+.oxl-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  font-family: var(--font-body); font-weight: 600; border-radius: var(--radius-sm);
+  border: 1px solid transparent; cursor: pointer; white-space: nowrap;
+  transition: background var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+.oxl-btn:active:not(:disabled) { transform: translateY(1px); }
+.oxl-btn:disabled { opacity: .45; cursor: not-allowed; }
+.oxl-btn-sm { height: 30px; padding: 0 12px; font-size: var(--text-sm); }
+.oxl-btn-md { height: 36px; padding: 0 16px; font-size: var(--text-base); }
+.oxl-btn-lg { height: 44px; padding: 0 22px; font-size: var(--text-md); }
+.oxl-btn-primary { background: var(--accent-primary); color: var(--accent-on-primary); }
+.oxl-btn-primary:hover:not(:disabled) { background: var(--accent-primary-hover); }
+.oxl-btn-secondary { background: var(--surface-card); color: var(--text-strong); border-color: var(--border-strong); box-shadow: var(--shadow-xs); }
+.oxl-btn-secondary:hover:not(:disabled) { border-color: var(--gray-5); background: var(--gray-1); }
+.oxl-btn-ghost { background: transparent; color: var(--text-muted); }
+.oxl-btn-ghost:hover:not(:disabled) { background: var(--gray-2); color: var(--text-strong); }
+.oxl-btn-danger { background: var(--danger); color: #fff; }
+.oxl-btn-danger:hover:not(:disabled) { filter: brightness(1.08); }
+
+/* ── Input ─────────────────────────────────────────────── */
+.oxl-field { display: flex; flex-direction: column; gap: 6px; font-family: var(--font-body); }
+.oxl-field label { font-size: var(--text-sm); font-weight: 500; color: var(--text-strong); }
+.oxl-field .hint { font-size: var(--text-xs); color: var(--text-muted); font-family: var(--font-mono); }
+.oxl-input {
+  height: 36px; padding: 0 12px; font-size: var(--text-base); color: var(--text-body);
+  background: var(--surface-inset); border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm); font-family: inherit; width: 100%;
+  transition: border-color var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);
+}
+.oxl-input::placeholder { color: var(--text-faint); }
+.oxl-input:hover { border-color: var(--border-strong); }
+.oxl-input:focus { outline: none; border-color: var(--cyan); box-shadow: 0 0 0 3px var(--focus-ring); }
+.oxl-input-mono { font-family: var(--font-mono); font-size: var(--text-sm); }
+
+/* ── Tabs ──────────────────────────────────────────────── */
+.oxl-tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--border-default); font-family: var(--font-body); }
+.oxl-tab {
+  appearance: none; background: none; border: none; cursor: pointer;
+  padding: 8px 14px 10px; margin-bottom: -1px; font-size: var(--text-sm); font-weight: 500;
+  color: var(--text-muted); border-bottom: 2px solid transparent;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+.oxl-tab:hover { color: var(--text-strong); }
+.oxl-tab[aria-selected="true"] { color: var(--text-strong); border-bottom-color: var(--accent-primary); }
+.oxl-tab .n { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-faint); margin-right: 6px; }
+
+/* ── Switch ────────────────────────────────────────────── */
+.oxl-switch {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: none; border: none; padding: 0; cursor: pointer;
+  font-family: var(--font-body); font-size: var(--text-sm); color: var(--text-body);
+}
+.oxl-switch:disabled { cursor: not-allowed; opacity: .45; }
+.oxl-switch-track {
+  width: 36px; height: 21px; border-radius: var(--radius-full);
+  position: relative; flex-shrink: 0; background: var(--gray-4);
+  transition: background var(--duration-base) var(--ease-out);
+}
+.oxl-switch[aria-checked="true"] .oxl-switch-track { background: var(--accent-primary); }
+.oxl-switch-thumb {
+  position: absolute; top: 2.5px; left: 2.5px; width: 16px; height: 16px;
+  border-radius: var(--radius-full);
+  /* The one literal colour in the system: the thumb is white against both the
+     green and the grey track, in both themes, so no token describes it. */
+  background: #fff; box-shadow: var(--shadow-xs);
+  transition: left var(--duration-base) var(--ease-out);
+}
+.oxl-switch[aria-checked="true"] .oxl-switch-thumb { left: 17.5px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .oxl-switch-track, .oxl-switch-thumb { transition: none; }
+}
+
+/* ── Theme toggle ──────────────────────────────────────── */
+.oxl-theme-toggle {
+  width: 32px; height: 32px; flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: transparent; border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm); color: var(--text-muted); cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out);
+}
+.oxl-theme-toggle:hover { color: var(--text-strong); border-color: var(--border-strong); }

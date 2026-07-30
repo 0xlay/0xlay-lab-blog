@@ -1,0 +1,40 @@
+/* 0xlay.lab — base element styles (minimal; tokens do the work) */
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--text-body);
+  background: var(--bg-page);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--text-strong);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-snug);
+  margin: 0;
+}
+
+code, kbd, pre, samp {
+  font-family: var(--font-mono);
+}
+
+a {
+  color: var(--text-link);
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--cyan-soft);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}

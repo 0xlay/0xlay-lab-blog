@@ -1,0 +1,12 @@
+---
+title: "ELF relocation, by hand"
+excerpt: "Resolving R_X86_64_GLOB_DAT with a hex editor and patience. The linker is less magic than you think."
+date: "2026-02-02"
+readTime: "11 min"
+hex: "0x0A"
+tags: [linux, binary-analysis]
+---
+
+Open an ELF. Find the `.rela.dyn` section. Pick a relocation entry. Now resolve it — without the linker, without readelf, just a hex editor and the ABI spec.
+
+Most engineers treat linking as a black box. It doesn't have to be.

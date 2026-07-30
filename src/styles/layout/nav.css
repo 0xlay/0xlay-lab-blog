@@ -1,0 +1,39 @@
+/* 0xlay.lab — the sticky header. */
+
+.oxl-nav {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--bg-page) 78%, transparent);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-default);
+}
+.oxl-nav-inner {
+  max-width: var(--container-max); margin: 0 auto;
+  padding: 0 var(--container-pad);
+  height: 60px; display: flex; align-items: center; gap: 28px;
+}
+.oxl-nav-brand { display: flex; text-decoration: none; flex-shrink: 0; }
+.oxl-nav-links { display: flex; gap: 4px; flex: 1; min-width: 0; }
+
+.oxl-nav-link {
+  font-family: var(--font-mono); font-size: 13px; font-weight: 500;
+  padding: 6px 10px; color: var(--text-muted); text-decoration: none;
+  /* The transparent border reserves the underline's space, so becoming the
+     active link does not shift the row. */
+  border-bottom: 1.5px solid transparent;
+  transition: color var(--duration-fast) var(--ease-out);
+  white-space: nowrap;
+}
+.oxl-nav-link:hover { color: var(--text-strong); }
+/* Active state is colour plus an underline. Green against grey is a hue shift
+   with little contrast behind it, and that is exactly the distinction a
+   red-green colourblind reader does not get. */
+.oxl-nav-link-active { color: var(--text-accent); border-bottom-color: var(--accent-primary); }
+
+@media (max-width: 640px) {
+  /* The five links and the toggle need the whole row at 375px. "~/" already
+     goes home, so the wordmark is the one thing here that repeats itself. */
+  .oxl-nav-brand { display: none; }
+  .oxl-nav-inner { gap: 12px; }
+  .oxl-nav-links { gap: 0; justify-content: space-between; }
+  .oxl-nav-link { padding: 6px 4px; }
+}

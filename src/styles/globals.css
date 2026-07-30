@@ -1,0 +1,27 @@
+/* 0xlay.lab — the single stylesheet entry point, imported once by the root
+   layout. It is a manifest and nothing else: rules live in the files below, so
+   a component's styles are findable by that component's name.
+
+   tokens/      values, plus the two breakpoints documented in effects.css
+   components/  the reusable pieces under src/components/ui
+   layout/      the shell, the header, the footer
+   sections/    the composed blocks under src/components/sections */
+
+@import './tokens/fonts.css';
+@import './tokens/colors.css';
+@import './tokens/typography.css';
+@import './tokens/effects.css';
+@import './tokens/base.css';
+
+@import './components/controls.css';
+@import './components/marks.css';
+@import './components/card.css';
+@import './components/code.css';
+
+@import './layout/shell.css';
+@import './layout/nav.css';
+@import './layout/footer.css';
+
+@import './sections/hero.css';
+@import './sections/posts.css';
+@import './sections/lists.css';

@@ -1,0 +1,69 @@
+/* 0xlay.lab — spacing, radii, shadows, motion. */
+
+:root {
+  /* spacing — 4px base grid */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  /* radii — calm, engineered rounding */
+  --radius-xs: 4px;    /* tags, kbd */
+  --radius-sm: 6px;    /* inputs, buttons */
+  --radius-md: 10px;   /* cards */
+  --radius-lg: 14px;   /* panels, modals */
+  --radius-xl: 20px;   /* hero shells */
+  --radius-full: 999px;
+
+  /* borders */
+  --border-w: 1px;
+
+  /* shadows — soft, low-saturation; cards rely on border + faint lift */
+  --shadow-xs: 0 1px 2px rgba(16, 24, 32, 0.06);
+  --shadow-sm: 0 1px 3px rgba(16, 24, 32, 0.07), 0 4px 12px rgba(16, 24, 32, 0.05);
+  --shadow-md: 0 2px 6px rgba(16, 24, 32, 0.08), 0 12px 28px rgba(16, 24, 32, 0.08);
+  --shadow-lg: 0 4px 12px rgba(16, 24, 32, 0.10), 0 24px 56px rgba(16, 24, 32, 0.14);
+
+  /* motion — quick, precise; no bounce */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1); /* @kind other */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1); /* @kind other */
+  --duration-fast: 120ms; /* @kind other */
+  --duration-base: 180ms; /* @kind other */
+  --duration-slow: 320ms; /* @kind other */
+
+  /* layout */
+  --container-max: 1120px;
+  --container-narrow: 720px;  /* blog measure */
+  --container-pad: 24px;      /* dropped to 16px below the small breakpoint */
+}
+
+/* Breakpoints.
+
+   Two, and they live here as a comment rather than as tokens because a custom
+   property cannot appear in a media query condition. Every @media in
+   src/styles is one of these two numbers:
+
+     900px  three-column grids fall to two, four-column grids fall to two
+     640px  everything falls to one column, the nav drops its wordmark, and
+            the container padding tightens
+
+   Adding a third breakpoint means adding it to this list first. */
+
+@media (max-width: 640px) {
+  :root {
+    --container-pad: 16px;
+  }
+}
+
+[data-theme="dark"] {
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35), 0 4px 12px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 2px 6px rgba(0, 0, 0, 0.4), 0 12px 28px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.45), 0 24px 56px rgba(0, 0, 0, 0.5);
+}

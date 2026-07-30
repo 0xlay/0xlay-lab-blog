@@ -1,0 +1,72 @@
+/* 0xlay.lab — the stacked card lists on /about and /gear, and the two
+   standalone pages that are only a message. */
+
+/* Shared by work, toolkit and gear: a column of cards with a label above. */
+.oxl-stack { display: flex; flex-direction: column; gap: 12px; }
+.oxl-stack-label { margin-bottom: 20px; }
+
+.oxl-entry { display: flex; flex-direction: column; gap: 8px; }
+.oxl-entry-title { font: 700 var(--text-base) var(--font-display); color: var(--text-strong); }
+.oxl-entry-desc {
+  margin: 0; font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-muted);
+}
+.oxl-entry-meta {
+  font-family: var(--font-mono); font-size: 12px; line-height: var(--leading-normal);
+  color: var(--text-faint);
+}
+
+/* ── About: intro ──────────────────────────────────────── */
+.oxl-about-intro {
+  font-size: var(--text-md); line-height: var(--leading-relaxed); color: var(--text-body);
+  margin-top: 20px; display: flex; flex-direction: column; gap: 16px;
+  text-align: justify; hyphens: auto;
+}
+.oxl-about-intro p { margin: 0; }
+.oxl-about-block { margin-top: 44px; }
+
+/* ── About: toolkit ────────────────────────────────────── */
+.oxl-toolkit-group { display: flex; flex-direction: column; gap: 16px; }
+.oxl-toolkit-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.oxl-toolkit-row { display: flex; flex-direction: column; gap: 8px; }
+.oxl-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+
+/* ── About: background ─────────────────────────────────── */
+.oxl-credentials { display: flex; flex-direction: column; gap: 14px; }
+.oxl-credential { display: flex; flex-direction: column; gap: 3px; }
+.oxl-credential-title { font-size: var(--text-sm); color: var(--text-body); }
+.oxl-language-row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+
+/* ── Gear ──────────────────────────────────────────────── */
+.oxl-gear { display: flex; flex-direction: column; gap: 44px; }
+.oxl-gear-rows { display: flex; flex-direction: column; gap: 22px; }
+.oxl-gear-row { display: flex; flex-direction: column; gap: 10px; }
+.oxl-gear-items { display: flex; flex-direction: column; gap: 14px; }
+.oxl-gear-item { display: flex; flex-direction: column; gap: 4px; }
+.oxl-gear-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.oxl-gear-name { font: 700 var(--text-base) var(--font-display); color: var(--text-strong); }
+
+/* ── Standalone message pages ──────────────────────────── */
+.oxl-message {
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 16px;
+  text-align: center; padding: 0 var(--container-pad); background: var(--bg-page);
+}
+.oxl-message-mark { margin: 0; font-family: var(--font-mono); font-size: var(--text-sm); color: var(--text-faint); }
+.oxl-message-title {
+  font: 800 var(--text-2xl)/1.15 var(--font-display);
+  letter-spacing: var(--tracking-tight); color: var(--text-strong); margin: 0;
+}
+.oxl-message-body { margin: 0; color: var(--text-muted); font-size: var(--text-base); }
+.oxl-message-link {
+  font-family: var(--font-mono); font-size: var(--text-sm); color: var(--text-link); text-decoration: none;
+}
+.oxl-message-link:hover { text-decoration: underline; }
+/* The redirect stub is the same shape with tighter type. */
+.oxl-stub { gap: 12px; font-family: var(--font-mono); }
+
+@media (max-width: 640px) {
+  .oxl-about-block { margin-top: 32px; }
+  .oxl-gear { gap: 32px; }
+  /* Justified text at a phone measure opens rivers between the words. */
+  .oxl-about-intro { text-align: left; }
+}

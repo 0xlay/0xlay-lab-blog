@@ -1,0 +1,44 @@
+/* 0xlay.lab — font faces.
+
+   WOFF2 only. Every browser that can run this site supports it, and the TTFs
+   these replaced cost 2.3 MB against 828 KB for the same faces.
+
+   No unicode-range subsetting. A latin subset would save more again, but posts
+   may carry Cyrillic and a missing glyph fails silently and reads as a bug,
+   which is worse than the bytes.
+
+   There is no italic mono face: nothing renders italic monospace, because MDX
+   emphasis resolves to the body stack. Adding one back means adding both the
+   @font-face here and the file under public/fonts. */
+
+@font-face {
+  font-family: 'Manrope';
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/Manrope-Variable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/Inter-Variable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+  src: url('/fonts/Inter-Italic-Variable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Google Sans Code';
+  font-weight: 300 800;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/GoogleSansCode-Variable.woff2') format('woff2');
+}

@@ -1,0 +1,12 @@
+---
+title: "Finding UART on anything"
+excerpt: "A multimeter, three pads, and a $7 adapter will get you a root shell on most consumer hardware. A practical guide."
+date: "2025-12-29"
+readTime: "8 min"
+hex: "0x08"
+tags: [hardware, embedded]
+---
+
+Most consumer hardware ships with a UART debug interface left enabled. The manufacturer just didn't put a connector on it.
+
+Here's how to find the TX, RX, GND, and VCC pads with a multimeter and a logic analyzer, and why the baud rate is almost always 115200.

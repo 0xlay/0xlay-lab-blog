@@ -1,0 +1,68 @@
+/* 0xlay.lab — the page container, the page header block, and the grids.
+
+   This is where the site stops being desktop-only. Every grid below had its
+   column count hardcoded in an inline style, which is why nothing reflowed. */
+
+.oxl-shell {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-pad);
+}
+
+/* The block every subpage opens with. `-narrow` holds the reading measure. */
+.oxl-page { padding: 72px 0 96px; }
+.oxl-page-narrow { max-width: var(--container-narrow); margin: 0 auto; }
+/* /posts ends on a list whose last row already draws a rule, so it skips the
+   bottom padding rather than doubling the gap before the footer. */
+.oxl-page-open { padding-bottom: 0; }
+
+.oxl-page-title {
+  font: 800 var(--text-2xl)/1.15 var(--font-display);
+  letter-spacing: var(--tracking-tight); color: var(--text-strong);
+  margin: 16px 0 8px;
+}
+.oxl-page-lede {
+  margin: 0 0 44px; color: var(--text-muted);
+  font-size: var(--text-base); line-height: var(--leading-relaxed);
+}
+/* The mono line under a tag heading: a count, not a sentence. */
+.oxl-page-count {
+  margin: 0 0 28px; font-family: var(--font-mono);
+  font-size: 13px; color: var(--text-muted);
+}
+
+/* A numbered section on the home page. */
+.oxl-section { padding-top: 88px; }
+.oxl-section-last { padding-bottom: 96px; }
+.oxl-section-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 16px; margin-bottom: 28px;
+}
+.oxl-section-more {
+  font-family: var(--font-mono); font-size: 13px; color: var(--text-link);
+  display: inline-flex; align-items: center; gap: 4px; text-decoration: none;
+  white-space: nowrap;
+}
+.oxl-section-more:hover { text-decoration: underline; }
+
+/* ── Grids ─────────────────────────────────────────────── */
+.oxl-grid { display: grid; gap: 16px; }
+.oxl-grid-lab { grid-template-columns: repeat(4, 1fr); }
+.oxl-grid-posts { grid-template-columns: repeat(3, 1fr); }
+.oxl-grid-pair { grid-template-columns: repeat(2, 1fr); align-items: start; }
+
+@media (max-width: 900px) {
+  .oxl-grid-lab { grid-template-columns: repeat(2, 1fr); }
+  .oxl-grid-posts { grid-template-columns: repeat(2, 1fr); }
+  .oxl-section { padding-top: 72px; }
+}
+
+@media (max-width: 640px) {
+  .oxl-grid-lab,
+  .oxl-grid-posts,
+  .oxl-grid-pair { grid-template-columns: 1fr; }
+  .oxl-page { padding: 48px 0 64px; }
+  .oxl-section { padding-top: 56px; }
+  .oxl-section-last { padding-bottom: 64px; }
+  .oxl-page-lede { margin-bottom: 32px; }
+}

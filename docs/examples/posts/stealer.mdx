@@ -1,0 +1,12 @@
+---
+title: "Unpacking a .NET stealer that really didn't want to be unpacked"
+excerpt: "Five layers, two VM-detection tricks, one decryption routine hidden in a resource. A malware analysis walkthrough."
+date: "2026-01-18"
+readTime: "17 min"
+hex: "0x09"
+tags: [malware, reverse-engineering]
+---
+
+The sample arrived as a weaponized invoice. By the time I got to the actual stealer logic it had passed through five unpacking stages, checked for VM artifacts twice, and hidden its final payload inside a PNG resource.
+
+Here's how to follow it.

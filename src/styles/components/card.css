@@ -1,0 +1,61 @@
+/* 0xlay.lab — the card surface and the two cards built on it. */
+
+.oxl-card {
+  background: var(--surface-card); border: 1px solid var(--border-default);
+  border-radius: var(--radius-md); box-shadow: var(--shadow-xs);
+  padding: 20px;
+  transition: box-shadow var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
+}
+/* Added whenever the card is a link, or is interactive without being one. */
+.oxl-card-hover { cursor: pointer; }
+.oxl-card-hover:hover { box-shadow: var(--shadow-sm); border-color: var(--border-strong); transform: translateY(-2px); }
+
+/* A card that is an anchor inherits nothing from the link colour. */
+a.oxl-card { text-decoration: none; color: inherit; display: block; }
+
+@media (prefers-reduced-motion: reduce) {
+  .oxl-card-hover:hover { transform: none; }
+}
+
+/* ── Post card ─────────────────────────────────────────── */
+/* Stretches to the grid row height, so a short excerpt does not leave the card
+   shorter than its neighbours. */
+a.oxl-post-card, .oxl-post-card { display: flex; flex-direction: column; }
+.oxl-post-card-body { display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.oxl-post-card-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.oxl-post-card-hex {
+  font-family: var(--font-mono); font-weight: 600; font-size: var(--text-xs);
+  letter-spacing: var(--tracking-label); color: var(--text-accent);
+}
+.oxl-post-card-date {
+  font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-faint);
+}
+.oxl-post-card-title {
+  font: 700 var(--text-lg)/1.25 var(--font-display);
+  letter-spacing: var(--tracking-tight); color: var(--text-strong); margin: 0;
+}
+.oxl-post-card-excerpt {
+  margin: 0; font-size: var(--text-sm); line-height: var(--leading-normal);
+  color: var(--text-muted);
+}
+/* margin-top:auto pins the tags to the bottom of a stretched card. */
+.oxl-post-card-tags {
+  display: flex; gap: 6px; flex-wrap: wrap; margin-top: auto; padding-top: 2px;
+}
+
+/* ── Project card ──────────────────────────────────────── */
+.oxl-project-body { display: flex; flex-direction: column; gap: 10px; }
+.oxl-project-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.oxl-project-name {
+  font-family: var(--font-mono); font-weight: 700; font-size: var(--text-md);
+  color: var(--text-strong);
+}
+.oxl-project-desc {
+  margin: 0; font-size: var(--text-sm); line-height: var(--leading-normal);
+  color: var(--text-muted);
+}
+.oxl-project-lang { font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); }

@@ -12,6 +12,11 @@ type Props = { params: { slug: string } }
 
 export async function generateStaticParams() {
   const posts = await getPosts()
+  // Next's static export treats an empty generateStaticParams array as if the
+  // function were absent and fails the build (vercel/next.js#71862). A blog
+  // with zero posts is a real state, so a placeholder param keeps the export
+  // valid; it 404s below like any other unknown slug.
+  if (posts.length === 0) return [{ slug: '__none__' }]
   return posts.map((p) => ({ slug: p.slug }))
 }
 

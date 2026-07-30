@@ -8,6 +8,9 @@ type Context = { params: { slug: string } }
 // front. Reading the same getPosts() as the post routes keeps the two in step.
 export async function generateStaticParams() {
   const posts = await getPosts()
+  // See the matching comment in posts/[slug]/page.tsx: an empty array here
+  // fails a static export build in Next 14.2.35 (vercel/next.js#71862).
+  if (posts.length === 0) return [{ slug: '__none__' }]
   return posts.map((p) => ({ slug: p.slug }))
 }
 

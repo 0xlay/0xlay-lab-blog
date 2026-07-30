@@ -10,6 +10,9 @@ type Props = { params: { tag: string } }
 
 export async function generateStaticParams() {
   const tags = await getTags()
+  // See the matching comment in posts/[slug]/page.tsx: an empty array here
+  // fails a static export build in Next 14.2.35 (vercel/next.js#71862).
+  if (tags.length === 0) return [{ tag: '__none__' }]
   return tags.map((t) => ({ tag: t.name }))
 }
 

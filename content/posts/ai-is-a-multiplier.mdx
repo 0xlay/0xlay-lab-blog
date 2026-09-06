@@ -1,0 +1,120 @@
+---
+title: "AI is a multiplier"
+excerpt: "AI does not replace engineering judgment, it multiplies it. The eight step workflow I run in Claude Code, and why it only works if you can already code."
+date: "2026-09-06"
+readTime: "10 min"
+hex: "0x00"
+tags: ["ai", "workflow", "engineering"]
+---
+
+<img
+  className="oxl-article-cover"
+  src="/images/posts/ai-is-a-multiplier.webp"
+  alt="An AI workflow for developers: plan, research, generate, refactor and explain arranged around a pipeline running from an idea to shipped code."
+  width="1536"
+  height="1024"
+/>
+
+One camp says AI is about to replace developers, because anyone can now put together a product without knowing how to code. What usually happens is that those products collapse a few months later under the weight of their own bugs and vulnerabilities.
+
+The other camp, mostly developers, says AI writes bad code, wrecks architecture, and leaves behind a project nobody can maintain. Because of their bad experience, developers suggest ignoring AI.
+
+Here is the thing. The second camp is right about the observation and wrong about the conclusion. Write a single vague prompt, and what you’ll get is terrible AI slop, not code. That’s why you need detailed prompts with enough context for the AI to understand exactly what it needs to do.
+
+## What you will not find here
+
+I could show you an example where one version is spaghetti code full of bugs, generated from a single prompt, while the other is high-quality code produced from a detailed prompt with a clear set of requirements and trade-offs. But that would prove nothing. You need to try this workflow on a real, large-scale project before you can properly judge the quality of the results.
+
+I also won’t spend time explaining why you should continuously maintain a project-level instruction file such as CLAUDE.md, or what exactly you should put in it. There are already plenty of articles covering that topic.
+
+So from here on, I’ll focus on the workflow itself.
+
+## Why this only works if you can already code
+
+First, one important caveat, because without it the rest of this article does not really make sense. This approach only works if you are a developer who has spent a substantial amount of time writing code yourself.
+
+This is not gatekeeping for the sake of gatekeeping. Look at the pipeline below. Almost every stage is a point where **a human makes the decision.** This is often described as a *human-in-the-loop* approach. Review the specification. Approve the plan. Notice when the model goes off track at step three. Understand which of two proposed bug fixes addresses the root cause and which merely hides the symptom. Decide whether a reported vulnerability is actually exploitable in your specific context.
+
+Every one of these stages is a test of engineering judgment. If you do not have enough experience to apply that judgment, the checks become little more than formal approval, and the entire pipeline collapses back into “generate and merge.”
+
+That is what the multiplier metaphor really means. **A multiplier works in both directions.** Multiply weak engineering judgment by a fast model, and you get technical debt, only now you are producing it much more *efficiently*.
+
+## Tools
+
+I work in Claude Code with the `superpowers` and `simplify` skills. My main model is Opus 5 with a high thinking level.
+
+Let me be more careful about tool choice than these articles usually are. I have tried Codex and Gemini, and on my tasks they were more likely to go off track or do things I had not asked for. But the more accurate way to put it is this: I am not comparing models alone. I am also comparing the tools built around them.
+
+My workflow is heavily built around the skills from superpowers. Similar capabilities exist in other tools, but in my experience they work better in Claude. That is at least true for the way I use them.
+
+There is another problem with making strong claims here. These comparisons can become outdated within a couple of months. Test the tools on your own code and your own tasks. The important part is not the specific model or product. It is the approach.
+
+## Workflow
+
+The core idea is that work gets broken into small features exactly the way you would break it down for a teammate. Skip that and the output is garbage no matter what else you do.
+
+### 1. Brainstorm
+
+Run `/superpowers:brainstorming` and describe the feature in detail. The model will start asking about anything unclear, and those questions deserve real answers. This is not a formality.
+
+### 2. The spec, and reviewing it
+
+Next you get a spec. **Read all of it.** Say what to add, change, or throw out. This is the cheapest place in the entire process to intervene. One corrected line in the spec saves an hour of reworked code.
+
+### 3. Implementation plan
+
+Once the spec is agreed, a plan appears. Check it, correct it, approve it.
+
+### 4. Implementation
+
+Hand it to subagents. This is the part where you can go get coffee :)
+
+### 5. Smoke testing
+
+Once the implementation is complete, the next step is basic testing. Make sure the project builds, starts successfully, and that the main scenario works as expected.
+
+### 6. Cleanup
+
+Next, run the `/simplify` skill to remove duplication and unnecessary code.
+
+### 7. Audit
+
+Next, run the `/security-review` skill. It thoroughly reviews the changes you made, identifies potential security issues, and suggests fixes for any problems it finds.
+
+### 8. Review and merge
+
+Only now do you read the code yourself. Then final testing, then merge.
+
+> **The order of the last three steps is not arbitrary, and it is the most important part of the whole pipeline.**
+>
+> `/simplify` runs first, because a reviewer should be reading the final shape of the code, not a draft full of duplication. `/security-review` runs second, because a human should not be spending attention on what a tool can find. The human comes last, because judgment is the scarce resource, not proofreading.
+>
+> You give the machine everything mechanical and keep only what requires a decision.
+
+## When you hit a bug
+
+Different route. Run `/superpowers:systematic-debugging` and give it three things: a description of the problem, the module you suspect, and anonymized logs.
+
+The model will ask follow up questions and request more artifacts. It will often propose adding extra logging and ask you to run that build so it has data to work with. That is a normal part of the loop, not stalling. Then it locates the cause and offers options.
+
+**You pick the option.** That is another judgment gate. There is usually one fix that addresses the *cause* and one that suppresses the *symptom*, and the difference is visible only to someone who understands the system.
+
+After the fix and a quick check, always run `/simplify`, then `/security-review`. Then test again, harder than usual, and only then merge.
+
+## So is it actually faster?
+
+Straight answer, because this is where people usually oversell.
+
+For a single small feature the process takes **about as long as doing it by hand, sometimes longer.** Eight steps with two review passes is a lot of ceremony.
+
+The gain sits elsewhere. Rework drops sharply, and that is the real saving: not typing speed, but the days you did not spend backing out of a bad decision. While subagents are implementing, you are free and can run a second task in parallel. And output quality is steadier, because `/security-review` does not get tired and skip a file twelve hours into the day.
+
+So the accurate claim is not “write code faster.” It is **“rework less and hold quality steadier for comparable time spent.”** Less exciting, and true.
+
+## Bottom line
+
+AI will not replace you and it will not ruin your codebase. It multiplies whatever you bring to it. Bring one unspecified prompt and you get code that compiles clean, passes the first test you write, and falls over on the first input somebody crafts against it. Bring a decomposed task, a spec you actually reviewed, and gates you actually enforce, and you get high-quality code that survives an audit.
+
+**AI is a multiplier of your abilities.** The stronger you are as an engineer, and the more seriously you approach problem definition and working with AI, the better the results will be.
+
+Work with AI as a teammate. Do not become a vibe coder, but do not become someone who ignores AI either.

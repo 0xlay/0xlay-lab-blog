@@ -16,6 +16,22 @@
 }
 
 /* ── About: intro ──────────────────────────────────────── */
+/* The avatar sits between the section label and the page title. The source art
+   is a square with a near-black ground, so the circle is a border-radius on
+   the img and nothing is baked into the file. The bottom margin is 0 on
+   purpose: the title's own 16px top margin collapses against it and sets the
+   gap.
+
+   The ring is the wordmark's circuit gradient. Those are the site's two
+   identity marks - one names the site, one names the person - so they carry
+   the same accent, and it is the same two stops in both themes. A gradient
+   cannot go in border-color, so it is the element's own background showing
+   through a padding ring; the image clips to the content box's radius. */
+.oxl-about-avatar {
+  display: block; width: 168px; height: 168px; margin: 20px 0 0; padding: 3px;
+  border-radius: var(--radius-full); object-fit: cover;
+  background: var(--gradient-circuit);
+}
 .oxl-about-intro {
   font-size: var(--text-md); line-height: var(--leading-relaxed); color: var(--text-body);
   margin-top: 20px; display: flex; flex-direction: column; gap: 16px;
@@ -65,6 +81,7 @@
 .oxl-stub { gap: 12px; font-family: var(--font-mono); }
 
 @media (max-width: 640px) {
+  .oxl-about-avatar { width: 128px; height: 128px; }
   .oxl-about-block { margin-top: 32px; }
   .oxl-gear { gap: 32px; }
   /* Justified text at a phone measure opens rivers between the words. */

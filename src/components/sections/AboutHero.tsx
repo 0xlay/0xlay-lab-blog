@@ -4,6 +4,16 @@ export function AboutHero() {
   return (
     <div>
       <SectionLabel hex="0x04">About</SectionLabel>
+      {/* Plain <img>, as in the post covers: the export is unoptimized, so
+          next/image would only add a client component for the same markup. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        className="oxl-about-avatar"
+        src="/images/avatar.png"
+        alt="Serge - 0xlay"
+        width="384"
+        height="384"
+      />
       <h1 className="oxl-page-title">An engineer&apos;s path</h1>
       <div className="oxl-about-intro">
         <p>
